@@ -38,7 +38,7 @@ def crop_srcs(layer, process, log, **kwargs):
     # Load target
     target_dir = "TargetSphereH{0}Ks{1}/{2}{3}".format(sphereH, ks, network, layer)
     targets = {}
-    for tilt in xrange(process, sphereH, n_process):
+    for tilt in range(process, sphereH, n_process):
         prefix = os.path.join(DATA_ROOT, target_dir, "tilt{0:03d}.{1}".format(tilt, split))
         dst_path = "{}.h5".format(prefix)
         if os.path.isfile(dst_path):

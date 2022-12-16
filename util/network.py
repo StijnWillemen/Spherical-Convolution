@@ -78,12 +78,12 @@ def init_sphconv(net, layer, sphereH=320, ks=640, network="faster-rcnn", pretrai
         else:
             itr_fin = 16000
         bin_dir = os.path.join(bin_root, "{0}{1}".format(network, layer))
-        for tilt in xrange(sphereH):
+        for tilt in range(sphereH):
             bin_path = os.path.join(bin_dir, "tilt{0:03d}_iter_{1}.caffemodel".format(tilt, itr_fin))
             if not os.path.isfile(bin_path):
-                print "Skip {}".format(bin_path)
+                print("Skip {}".format(bin_path))
                 continue
-            print bin_path
+            print(bin_path)
             net.copy_from(bin_path)
         layer = top_down[layer]
     return net

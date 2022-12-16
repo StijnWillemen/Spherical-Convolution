@@ -244,8 +244,8 @@ def rounded_rf(layer, tilt, sphereH=640, ks=640):
 def compute_covers(tilt, layer, top_rf, sphereH=640, ks=640):
     def covered_pixels(Px, Py):
         pixels = set()
-        for i in xrange(Px.shape[0]):
-            for j in xrange(Px.shape[1]):
+        for i in range(Px.shape[0]):
+            for j in range(Px.shape[1]):
                 x = Px[i,j]
                 y = Py[i,j]
                 xu = int(np.ceil(x))
@@ -280,8 +280,8 @@ def compute_covers(tilt, layer, top_rf, sphereH=640, ks=640):
         j_end = j_start + H
         i_start = Ci - W/2
         i_end = i_start + W
-        for j in xrange(j_start, j_end):
-            for i in xrange(i_start, i_end):
+        for j in range(j_start, j_end):
+            for i in range(i_start, i_end):
                 Pi, Pj = translate_coord(i, j)
                 bottom[Pj,Pi] = 1
         return bottom

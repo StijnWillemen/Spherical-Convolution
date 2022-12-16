@@ -34,8 +34,8 @@ def backproject_convolution(imgs, tilt, method, **kwargs):
         xs = []
         ys = []
         idx = []
-        for i in xrange(kh):
-            for j in xrange(kw):
+        for i in range(kh):
+            for j in range(kw):
                 x = Px[i,j]
                 y = Py[i,j]
                 x = int(round(x))

@@ -65,13 +65,13 @@ class SphConv(object):
 
     def extract_base(self, img):
         base = np.zeros((self.sphereH, self.sphereW, self.n_c))
-        for i in xrange(self.sphereH):
+        for i in range(self.sphereH):
             if i in self.Ps:
                 P = self.Ps[i]
             else:
                 P = self.projection.buildP(i)
                 self.Ps[i] = P
-            for j in xrange(self.sphereW):
+            for j in range(self.sphereW):
                 rimg = np.roll(img, self.sphereW/2-j, axis=1)
                 patch = self.projection.project(P, rimg)
                 val = forward_patch(patch, self.base_net, layer=self.base)

@@ -227,7 +227,7 @@ def generate_proto(sphereH, ks, network, layer):
     proto_dir = os.path.join(SphConv_ROOT, "prototxt",
                              "SphereH{0}Ks{1}".format(sphereH, ks),
                              "{0}{1}".format(network, layer))
-    for tilt in xrange(0, sphereH, step):
+    for tilt in range(0, sphereH, step):
         path = os.path.join(proto_dir, "net.tilt{:03d}.prototxt".format(tilt))
         if os.path.isfile(path):
             sys.stderr.write("Skip {}\n".format(path))

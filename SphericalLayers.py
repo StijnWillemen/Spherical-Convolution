@@ -226,7 +226,7 @@ class SplitRowLayer(caffe.Layer):
         # === reshape tops ===
         top_rows = {}
         pads = {}
-        for i in xrange(H):
+        for i in range(H):
             tilt = i * stride
             _, (kernel_w, kernel_h) = rounded_rf(layer, tilt, sphereH=sphereH, ks=ks)
             pad = kernel_w / 2
@@ -235,7 +235,7 @@ class SplitRowLayer(caffe.Layer):
 
             pads[i] = pad
             rows = []
-            for j in xrange(kernel_h):
+            for j in range(kernel_h):
                 rowId = i + j - kernel_h / 2
                 if rowId < 0:
                     rowId = -1 - rowId
@@ -304,7 +304,7 @@ class MergeRowLayer(caffe.Layer):
         """
         Load data.
         """
-        for i in xrange(len(bottom)):
+        for i in range(len(bottom)):
             top[0].data[:,:,i:i+1,:] = bottom[i].data[...]
 
     def reshape(self, bottom, top):
@@ -429,7 +429,7 @@ class SphConvDataLayer(caffe.Layer):
         data_q = Queue(max_queue_size)
 
         procs = []
-        for p in xrange(n_process):
+        for p in range(n_process):
             proc = PrefetchProcess(self.samples, sample_q, data_q, pid_q,
                                    layer=self.layer,
                                    sphereH=self.sphereH,
@@ -454,7 +454,7 @@ class SphConvDataLayer(caffe.Layer):
 
     def __del__(self):
         self.sample_q.put(-1)
-        #for i in xrange(self.n_process):
+        #for i in range(self.n_process):
         #    pid = self.pid_q.get()
         #    os.kill(pid, signal.SIGTERM)
         for proc in self.procs:
@@ -483,8 +483,8 @@ class SphConvLossLayer(caffe.Layer):
         if len(bottom) == 3:
             assert bottom[0].shape[2] == bottom[2].shape[0]
             assert bottom[0].shape[3] == bottom[2].shape[1]
-            for i in xrange(bottom[0].data.shape[2]):
-                for j in xrange(bottom[0].data.shape[3]):
+            for i in range(bottom[0].data.shape[2]):
+                for j in range(bottom[0].data.shape[3]):
                     if not bottom[2].data[i,j]:
                         self.diff[:,:,i,j] = 0.
             Nch = bottom[0].shape[1]

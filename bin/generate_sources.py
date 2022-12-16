@@ -80,13 +80,13 @@ def generate_source(frame, layer, sphereH=320, ks=640, network='faster-rcnn'):
     img = cv2.imread(frame_path)
     if sphereH != img.shape[0]:
         img = cv2.resize(img, (sphereW, sphereH))
-    for y in xrange(sphereH):
+    for y in range(sphereH):
         P = projection.buildP(y)
         log.write("Process the {:>3d}-th row\n".format(y))
         log.flush()
 
-        for x_start in xrange(0, sphereW, batch_size):
-            for i in xrange(batch_size):
+        for x_start in range(0, sphereW, batch_size):
+            for i in range(batch_size):
                 x = x_start + i
                 rimg = np.roll(img, projection.sphereW/2-x, axis=1)
                 patch = projection.project(P, rimg)
@@ -98,7 +98,7 @@ def generate_source(frame, layer, sphereH=320, ks=640, network='faster-rcnn'):
             vals = out[target].copy()
             assert vals.shape[2] == 1
             assert vals.shape[3] == 1
-            for i in xrange(batch_size):
+            for i in range(batch_size):
                 x = x_start + i
                 src[y,x,:] = vals[i].ravel()
 

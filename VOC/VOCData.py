@@ -129,9 +129,9 @@ def load_bboxes(tilt, voc, **kwargs):
 if __name__ == "__main__":
     bboxes = voc_bboxes(voc=2007)
     for bbox in bboxes:
-        print bbox.frame
-        print bbox.label
-        print bbox.name
-        print "==="
-    print len(bboxes)
+        print(bbox.frame)
+        print(bbox.label)
+        print(bbox.name)
+        print("===")
+    print(len(bboxes))
 

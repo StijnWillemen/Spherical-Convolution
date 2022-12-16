@@ -10,7 +10,7 @@ SphConv_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(SphConv_ROOT)
 
 import cfg
-import caffe
+
 
 from cfg import DATA_ROOT
 from SphereProjection import SphereProjection
@@ -76,11 +76,11 @@ def generate_source(path, tilt, **kwargs):
     img = cv2.imread(path)
     if sphereH != img.shape[0]:
         img = cv2.resize(img, (sphereW, sphereH))
-    for y in xrange(sphereH):
+    for y in range(sphereH):
         P = projection.buildP(y)
         log.write("Process the {:>3d}-th row\n".format(y))
         log.flush()
-        for x in xrange(sphereW):
+        for x in range(sphereW):
             rimg = np.roll(img, projection.sphereW/2-x, axis=1)
             patch = projection.project(P, rimg)
             val = forward_patch(patch, net, layer=layer)
@@ -128,7 +128,7 @@ def main():
         if not n_tasks > args.frame >= 0:
             return
         path = paths[args.frame]
-    print path
+    print(path)
     generate_source(path, args.tilt, **kwargs)
 
 if __name__ == "__main__":

@@ -25,7 +25,7 @@ from VOC.VOCData import load_bboxes, IMG_SPHEREH
 def generate_proposals(imgs, tilt, method, **kwargs):
     def img_proposals(path):
         frameId = os.path.splitext(os.path.basename(path))[0]
-        print frameId
+        print(frameId)
 
         img = cv2.imread(path)
         if sphereH != img.shape[0]:
@@ -35,8 +35,8 @@ def generate_proposals(imgs, tilt, method, **kwargs):
         xs = []
         ys = []
         idx = []
-        for i in xrange(Px.shape[0]):
-            for j in xrange(Px.shape[1]):
+        for i in range(Px.shape[0]):
+            for j in range(Px.shape[1]):
                 x = Px[i,j]
                 y = Py[i,j]
                 x = int(round(x))
@@ -90,7 +90,7 @@ def generate_proposals(imgs, tilt, method, **kwargs):
         extractor = SphericalConvolution(layer=bot, sphereH=sphereH, ks=ks, fov=fov)
     elif method == "sphconv":
         extractor = SphConv(layer=bot, sphereH=sphereH, ks=ks, fov=fov)
-        root = os.path.join(DATA_ROOT, "PanoTarget")
+        root = os.path.join(cfg.DATA_ROOT, "PanoTarget")
         rf_size = kwargs["rf_size"]
         voc = kwargs["voc"]
         base_dir = os.path.join(root,

@@ -29,7 +29,7 @@ class SphericalConvolution(object):
 
         supports = {}
         stride = strides[ks][sphereH][layer]
-        for y in xrange(sphereH):
+        for y in range(sphereH):
             crop_in, _ = rounded_rf(layer, y, sphereH, ks)
             h, w = crop_in
             n_w = (w-1) / stride / 2
@@ -79,8 +79,8 @@ class SphericalConvolution(object):
     def _construct_base(self, x, y):
         bases = set()
         Px, Py = self.supports[y]
-        for i in xrange(Px.shape[0]):
-            for j in xrange(Px.shape[1]):
+        for i in range(Px.shape[0]):
+            for j in range(Px.shape[1]):
                 col = Px[i,j] + x
                 row = Py[i,j]
                 col, row = self.translate_coordinate(col, row)
@@ -121,12 +121,12 @@ class SphericalConvolution(object):
                 bidx = 0
                 out = self.base_net.forward(blobs=[target])
                 val = out[target].copy()
-                for i in xrange(batch_size):
+                for i in range(batch_size):
                     vals.append(val[i].ravel())
         if bidx > 0:
             out = self.base_net.forward(blobs=[target])
             val = out[target].copy()
-            for i in xrange(bidx):
+            for i in range(bidx):
                 vals.append(val[i].ravel())
 
         base_vals = {}
@@ -143,8 +143,8 @@ class SphericalConvolution(object):
 
         Px, Py = self.supports[y]
         data = np.zeros((Px.shape[0], Px.shape[1], self.n_c))
-        for i in xrange(Px.shape[0]):
-            for j in xrange(Px.shape[1]):
+        for i in range(Px.shape[0]):
+            for j in range(Px.shape[1]):
                 col = Px[i,j] + x
                 row = Py[i,j]
                 col, row = self.translate_coordinate(col, row)

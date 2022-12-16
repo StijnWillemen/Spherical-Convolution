@@ -98,8 +98,8 @@ class SphereProjection(SphereCoordinates):
         row = []
         col = []
         data = []
-        for oy in xrange(Px.shape[0]):
-            for ox in xrange(Px.shape[1]):
+        for oy in range(Px.shape[0]):
+            for ox in range(Px.shape[1]):
                 ix = Px[oy, ox]
                 iy = Py[oy, ox]
                 c00, c01, c10, c11 = self._bilinear_coef(ix, iy)
@@ -169,7 +169,7 @@ class SphereProjection(SphereCoordinates):
         return ix0, ix1, iy0, iy1
 
     def project(self, P, img):
-        output = np.stack([P.dot(img[:,:,c].ravel()).reshape(self.shape) for c in xrange(3)], axis=2)
+        output = np.stack([P.dot(img[:,:,c].ravel()).reshape(self.shape) for c in range(3)], axis=2)
         return output
 
 
@@ -178,7 +178,7 @@ def crop_image(src, x, y, crop_size):
     h, w, c = src.shape
     dst = np.zeros((crop_h, crop_w, c), dtype=src.dtype)
 
-    for i in xrange(crop_h):
+    for i in range(crop_h):
         dy = y + i - crop_h / 2
         if dy < 0:
             dy = -1 - dy
@@ -188,7 +188,7 @@ def crop_image(src, x, y, crop_size):
             shift_x = w / 2
         else:
             shift_x = 0
-        for j in xrange(crop_w):
+        for j in range(crop_w):
             dx = x + j - crop_w / 2 + shift_x
             if dx >= w:
                 dx -= w
